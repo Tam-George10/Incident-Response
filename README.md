@@ -15,7 +15,40 @@ Access was provided using privileged credentials:
 - **Access Method:** Local VM 
 
 ---
+## Tools Used
 
+The following tools and native Linux utilities were used throughout the incident response investigation to identify persistence mechanisms, analyze malicious activity, and validate compromise scope:
+
+- **SSH** – Secure remote access to the isolated Linux virtual machine  
+- **Bash Shell** – Interactive shell used for command execution and configuration analysis  
+- **Cron** – Task scheduling subsystem analyzed for persistence mechanisms  
+- **Netcat (nc / ncat)** – Identified as the attacker’s tool for reverse shell communication  
+- **Core GNU/Linux Utilities** – Standard system tools leveraged during forensic analysis  
+- **Local Virtual Machine Environment** – Safe, isolated environment for investigation and documentation  
+
+All tools used reflect real-world utilities commonly available on Linux systems and mirror techniques used by both attackers and defenders.
+
+---
+
+## Utilities & Commands Referenced
+
+The investigation relied on a minimal but realistic command set, reflecting a disciplined incident response approach focused on evidence preservation and signal over noise:
+
+- `ssh` – Initial access to the compromised host  
+- `ls -la` – Enumeration of hidden and suspicious files within user directories  
+- `cat` – Review of configuration files such as `.bashrc` and `/etc/passwd`  
+- `crontab -l` – Inspection of scheduled tasks for malicious persistence  
+- `sudo su` – Privilege escalation to assess root-level persistence  
+- `/etc/passwd` analysis – Identification of abused default system accounts  
+- Shell redirection and piping (`|`, `>&`) – Observed within attacker payloads, not executed unnecessarily  
+
+Each command and methodology is fully explained in the companion documentation located in:
+
+📂 **Linux_Incident_Response_Notes**
+
+This structure ensures the main investigation report remains concise, while detailed technical explanations are preserved for training, audit, and portfolio review purposes.
+
+---
 ## Environment Details
 
 - **Operating System:** Ubuntu 20.04.6 LTS
