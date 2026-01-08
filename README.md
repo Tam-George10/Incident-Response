@@ -12,7 +12,7 @@ Access was provided using privileged credentials:
 
 - **Username:** giorgio  
 - **Privileges:** Root access  
-- **Access Method:** Local VM (AttackBox / VPN)
+- **Access Method:** Local VM 
 
 ---
 
@@ -55,7 +55,7 @@ Backdoor Type: User-level shell persistence
 
 ```
 
-2. Scheduled Task Persistence (giorgio)
+## 2. Scheduled Task Persistence (giorgio)
 A malicious cron-executed reverse shell was identified:
 
 bash
@@ -69,7 +69,7 @@ C2 Address: 172.10.6.9:6969
 
 Impact: Repeated outbound shell access
 
-3. Root Account Investigation
+## 3. Root Account Investigation
 Upon switching to the root account, an error message appeared automatically, indicating malicious execution without user interaction.
 
 Observed Error Output
@@ -90,7 +90,7 @@ Mechanism: Automatic execution of reverse shell on login
 
 Privilege Level: Root (critical severity)
 
-4. System-Level Persistence
+## 4. System-Level Persistence
 A final persistence mechanism was identified tied to a default Linux account.
 
 Account Name: nobody
@@ -99,7 +99,7 @@ Description: Abuse of a default system account commonly present in fresh Linux i
 
 Risk: Difficult-to-detect persistence leveraging trusted system users
 
-Indicators of Compromise (IOCs)
+## Indicators of Compromise (IOCs)
 html
 Copy code
 <h3>Indicators of Compromise (IOCs)</h3>
@@ -114,7 +114,8 @@ Copy code
   <li><b>Persistence Mechanisms:</b> .bashrc modification, cron job, reverse shells</li>
   <li><b>Tools Used:</b> bash, nc, ncat</li>
 </ul>
-MITRE ATT&CK Mapping
+
+## MITRE ATT&CK Mapping
 T1059.004 – Command and Scripting Interpreter: Bash
 Malicious shell commands embedded in .bashrc files.
 
@@ -130,10 +131,10 @@ Active reverse shell connections to attacker infrastructure.
 T1078 – Valid Accounts
 Abuse of legitimate user and system accounts for persistence.
 
-Final Assessment & Recommendations
+## Final Assessment & Recommendations
 The investigation confirmed a multi-layered compromise involving user-level, root-level, and system-account persistence mechanisms. The attacker demonstrated strong knowledge of Linux internals, leveraging shell configuration files, cron jobs, and trusted accounts to maintain access.
 
-Recommendations
+## Recommendations
 Immediately rebuild the server from a known-good image
 
 Rotate all credentials associated with the host
@@ -146,12 +147,10 @@ Deploy host-based intrusion detection (HIDS) and file integrity monitoring
 
 Conduct a full compromise assessment of adjacent systems
 
-Case Closure
+## Case Closure
 All identified backdoors were documented and understood. Due to the depth of compromise and multiple persistence layers, system reimaging is strongly recommended over manual cleanup. Findings have been preserved for SOC reporting, detection engineering, and future incident response readiness.
 
 Status: Investigation complete – Host unsafe for return to production without rebuild.
 
-less
-Copy code
 
 
